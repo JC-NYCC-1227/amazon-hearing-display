@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>NYCC-AmazonHQ2</title>
+  <style>
+    body{
+      background-image: url("http://council.nyc.gov/wp-content/uploads/2018/12/nycc-wordmark-blue.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 45%;
+      margin: 0;
+    }
+    form{
+      background-color:rgba(0,0,0,0.5);
+      position:absolute;
+    }
+    #blockquoteArea{
+      background-color:rgba(0,0,0,0.5);
+      height:100vh;
+      text-align:center;
+      width:100%;
+    }
+    twitter-widget{
+      position: absolute !important;
+      left: 50%;
+      top:22%;
+      margin-left: -250px;
+      margin-top:-250px;
+
+    }
+  </style>
+</head>
+<body>
+  <form autocomplete="off">
+    <input type="text" id="newTweet" autocomplete="off">
+    <input type="submit" id="showNewTweet" value="Load"/>
+  </form>
+  <div id="blockquoteArea"></div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function(){
+      $("form").on("submit", function(e){
+        e.preventDefault();
+        $("#blockquoteArea").hide();
+        $("#blockquoteArea").html($("#newTweet").val());
+        $.ajax({
+          url: "https://platform.twitter.com/widgets.js",
+          dataType: "script",
+          success: function(){
+            $("#blockquoteArea").show()
+          }
+        });
+      });
+      $("#showNewTweet").click(function(){
+        $("#blockquoteArea").hide();
+        $("#blockquoteArea").html($("#newTweet").val());
+        $.ajax({
+          url: "https://platform.twitter.com/widgets.js",
+          dataType: "script",
+          success: function(){
+            $("#blockquoteArea").show();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html> 
